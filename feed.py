@@ -19,6 +19,6 @@ xml_tree.SubElement(channel_element, 'description').text = yaml_data['descriptio
 xml_tree.SubElement(channel_element, 'itunes:image').text = yaml_data['itunes:image']
 xml_tree.SubElement(channel_element, 'language').text = yaml_data['language']
 
-  output_tree = xml_tree.ElementTree(rss_element)
-  output_tree.write('podcast.xml', encoding='UTF-8', xml_declaration=True)
+output_tree = xml_tree.ElementTree(rss_element)
+output_tree.write('podcast.xml', encoding='UTF-8', xml_declaration=True)
   
