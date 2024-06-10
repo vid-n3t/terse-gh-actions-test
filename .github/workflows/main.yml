@@ -1,14 +1,50 @@
-name: Copy To Branches
+name: Generate Podcast Feeds
 on:
-  workflow_dispatch:
+  # shouldn't be able to push to protected branch
+  push
+    branches: ["main-vid"]
+  pull_request:
+    branches: [ "main-vid" ]
+
+# Allows you to run this workflow manually from the Actions tab
+workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  copy-to-branches:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v3
         with:
-          fetch-depth: 0
-      - name: Copy To Branches Action
-        uses: planetoftheweb/copy-to-branches@v1.2
-        env:
-          key: main
+          python-version: "3.10"
+      - name: Install Dependancies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml flake8
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - name: Run Feed Generator
+        run: python feed.py
+            - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -43,8 +43,10 @@ with open("feed.yaml", "r") as file:
     xml_tree.SubElement(
         channel_element, "itunes:category", {"text": yaml_data["category"]}
     )
-    # xml_tree.SubElement(channel_element, 'format').text = yaml_data['format']
-    # xml_tree.SubElement(channel_element, 'subtitle').text = yaml_data['subtitle']
+    # xml_tree.SubElement(channel_element, "format").text = yaml_data["format"]
+    # xml_tree.SubElement(channel_element, "subtitle").text = yaml_data[
+    #     "subtitle"
+    # ]
     xml_tree.SubElement(
         channel_element,
         "atom:link",
