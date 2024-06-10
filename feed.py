@@ -87,6 +87,4 @@ with open("feed.yaml", "r") as file:
         xml_tree.SubElement(item_element, "itunes:explicit").text = "false"
 
     output_tree = xml_tree.ElementTree(rss_element)
-    output_tree.write(
-        "_site/podcast.xml", encoding="UTF-8", xml_declaration=True
-    )
+    output_tree.write("podcast.xml", encoding="UTF-8", xml_declaration=True)

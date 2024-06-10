@@ -54,9 +54,7 @@ jobs:
       - name: Setup Pages # needed to ensure pages env is setup
         uses: actions/configure-pages@v5
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3.0.1 # the action will deploy the <repository root>/_site contents
-        with:
-          path: "_site"
+        uses: actions/upload-pages-artifact@v3.0.1
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
