@@ -19,4 +19,3 @@ git remote add origin git@github.com:vid-n3t/terse-gh-actions-test.git
 
 1. Enable the git pre-commit hook
 2. Instructions in the /scripts dir
-3. Move site files to a \_sites/ dir so publishing doesn't include sensative files
