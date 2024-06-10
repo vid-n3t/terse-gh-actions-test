@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# lock the main-vid branch for pushing
+branchName=$(git branch | grep '*' | sed 's/* //') 
+case $branchName in main*)
+    echo "##################################"
+    echo "You cannot push to ${branchName}!"
+    echo "'main*' branches are locked"
+    echo "##################################"
+    exit 1
+esac
+
+# if [[ $branchName == "main-vid" ]]
+# then
+# fi
+exit 0
