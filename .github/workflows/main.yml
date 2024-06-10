@@ -1,10 +1,10 @@
 name: Generate Podcast Feeds
 on:
   # shouldn't be able to push to protected branch
-  push
+  push:
     branches: ["main-vid"]
   pull_request:
-    branches: [ "main-vid" ]
+    branches: ["main-vid"]
 
 # Allows you to run this workflow manually from the Actions tab
 workflow_dispatch:
@@ -38,13 +38,13 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run Feed Generator
         run: python feed.py
-            - name: Setup Pages
+      - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: '.'
+          path: "."
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
