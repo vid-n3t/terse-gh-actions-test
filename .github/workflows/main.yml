@@ -1,3 +1,17 @@
+# name: Copy To Branches
+# on:
+#   workflow_dispatch:
+# jobs:
+#   copy-to-branches:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
+#       - name: Copy To Branches Action
+#         uses: planetoftheweb/copy-to-branches@v1.2
+#         env:
+#           key: main
 name: Generate Podcast Feeds
 on:
   # shouldn't be able to push to protected branch
@@ -7,7 +21,7 @@ on:
     branches: ["main-vid"]
 
 # Allows you to run this workflow manually from the Actions tab
-# workflow_dispatch:
+workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -48,3 +62,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.5
+        publish_dir: ./_site # the action will deploy the <repository root>/_site contents to the (default) gh-pages branch, root directory
