@@ -1,0 +1,8 @@
+# Site settings
+title: Roy's Podcastorama
+author:
+  name: Ray Villalobos
+  email: info@raybo.org
+description: "Roy's podcast home page"
+# Build settings
+# remote_theme: jekyll/minima
